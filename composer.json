@@ -9,19 +9,18 @@
     "license": "MIT",
     "require": {
         "php": "^8.3.4",
-        "fideloper/proxy": "^4.4",
         "intervention/image": "^3.6",
         "intervention/image-laravel": "^1.2",
-        "laravel/framework": "^8.83.27",
+        "laravel/framework": "^10.0",
         "laravel/tinker": "^2.9",
-        "laravel/ui": "^3.4.6",
+        "laravel/ui": "^4.0",
         "phpunit/phpunit": "^9.6.19"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^4.0",
+        "nunomaduro/collision": "^6.0",
         "phpunit/phpunit": "^9.6.19"
     },
     "config": {
