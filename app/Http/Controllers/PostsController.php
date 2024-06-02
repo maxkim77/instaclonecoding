@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
-use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver as GdDriver;
 
 class PostsController extends Controller
 {
+    protected $imageManager;
+
     public function __construct()
     {
         $this->middleware('auth');
+
+        // GD 드라이버로 ImageManager 인스턴스 생성
+        $this->imageManager = new ImageManager(new GdDriver());
     }
 
     public function index()
@@ -49,7 +55,7 @@ class PostsController extends Controller
         }
 
         // Intervention Image로 이미지 처리
-        $image = Image::open($storagePath)->resize(1200, 1200);
+        $image = $this->imageManager->read($storagePath)->resize(1200, 1200);
         $image->save($storagePath);  // 저장 경로를 명시적으로 지정
 
         // 데이터베이스에 포스트 생성
@@ -66,4 +72,3 @@ class PostsController extends Controller
         return view('posts.show', compact('post'));
     }
 }
-

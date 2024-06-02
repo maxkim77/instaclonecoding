@@ -46,6 +46,8 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+    // 유효성검사
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -56,6 +58,7 @@ class RegisterController extends Controller
         ]);
     }
 
+    // 유저 생성 컨트롤러
     /**
      * Create a new user instance after a valid registration.
      *
