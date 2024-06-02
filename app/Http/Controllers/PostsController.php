@@ -25,6 +25,8 @@ class PostsController extends Controller
         $users = auth()->user()->following()->pluck('profiles.user_id');
 
         // 팔로우하고 있는 사용자들의 포스트를 최신순으로 가져옴
+        // $posts = Post::whereIn('user_id', $users)->latest()->paginate(5);
+
         $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
 
         // 'posts.index' 뷰에 포스트 데이터를 전달하여 렌더링
@@ -63,7 +65,7 @@ class PostsController extends Controller
         }
 
         // Intervention Image를 사용하여 이미지 크기 조정
-        $image = $this->imageManager->make($storagePath)->resize(1200, 1200);
+        $image = $this->imageManager->read($storagePath)->resize(1200, 1200);
 
         // 처리된 이미지를 저장 (명시적 경로 지정)
         $image->save($storagePath);
